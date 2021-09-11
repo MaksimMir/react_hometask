@@ -1,6 +1,40 @@
-.message {
-    font-size: 20px;
-    font-weight: 700;
-    color: cadetblue;
-    text-align: center;
+.form {
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin: 50px auto;
+    &__label {
+        font-size: 17px;
+        font-weight: 600;
+        color: rgb(59, 59, 100);
+        margin-bottom: 10px;
+    }
+    &__text {
+        padding: 7px 10px;
+        margin-bottom: 15px;
+        width: 100%;
+        font-size: 15px;
+        font-weight: 500;
+        color: rgb(114, 114, 151);
+        border: none;
+        outline: none;
+        border-bottom: 2px solid rgb(144, 144, 192);
+        &:focus {
+            border-color: darken(rgb(144, 144, 192), 30%);
+        }
+    }
+    &__btn {
+        padding: 10px 17px;
+        background-color: rgb(64, 124, 235);
+        color: cornsilk;
+        border: 1px solid rgb(64, 124, 235);
+        outline: none;
+        cursor: pointer;
+        border-radius: 4px;
+        &:hover {
+            background-color: darken(rgb(64, 124, 235), 15%);
+            color: lighten(cornsilk, 15%);
+        }
+    }
 }
