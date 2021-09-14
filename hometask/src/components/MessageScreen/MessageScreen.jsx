@@ -1,18 +1,20 @@
-import './MessageScreen.scss';
+import { List, ListItem } from '@material-ui/core';
+import './MessageScreen.scss'
+
 
 const MessageScreen = ({ messageList }) => {
 
     return (
-        <ul className="list">
+        <List className="list">
             {messageList.map(item => {
             return (
-                <li key={item.id} className="list__item">
+                <ListItem className="list__item" key={item.id}>
                     <p className="list__name">{ item.name }</p>
                     <p className="list__text">{ item.text }</p>
-                </li>
+                </ListItem>
             )
             })}
-        </ul>
+        </List>
     );
 
 

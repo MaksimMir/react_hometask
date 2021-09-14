@@ -1,9 +1,27 @@
 import { useState } from 'react';
-import './Message.scss';
+// import './Message.scss';
+import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
+import Grid from '@material-ui/core/Grid';
+import { makeStyles } from '@material-ui/core/styles';
+import FormControl from '@material-ui/core/FormControl';
+
+const useStyles = makeStyles((theme) => ({
+    root: {
+        width: '50%',
+        marginInline: 'auto',
+    },
+    input: {
+      width: '100%',
+      marginBottom: theme.spacing(3)
+    }
+  }));
 
 const Message = ({changeList}) => {
     const [ text, setText ] = useState('');
     const [ name, setName ] = useState('')
+
+    const classes = useStyles();
 
     const handleChangeText = evt => {
         setText(evt.target.value);
@@ -14,30 +32,35 @@ const Message = ({changeList}) => {
     }
 
     const handleChangeMessage = (evt) => {
-        evt.preventDefault();
+        evt.preventDefault();  
         changeList(text, name);
         setText('');
         setName('');
     }
 
     return (
-        <form className="form">
-            <label className="form__label" htmlFor="mess">Message</label>
-                <input type="text" 
+        <FormControl fullWidth>
+            <Grid className={classes.root} container direction="column" alignItems="center">
+                <TextField 
+                autoFocus
+                className={classes.input}
+                id="standard-basic" 
+                label="Message"
                 onChange={handleChangeText}
-                value={text}  
-                className="form__text"
-                id="mess" />
+                value={text} />
 
-            <label className="form__label" htmlFor="name">UserName</label>
-                <input type="text" 
+                <TextField 
+                className={classes.input}
+                id="standard-basic" 
+                label="UserName"
                 onChange={handleChangeName}
-                value={name}  
-                className="form__text"
-                id="name" />
+                value={name} />
 
-            <button onClick={handleChangeMessage} className="form__btn">submit</button>
-        </form>
+                <Button onClick={handleChangeMessage} variant="contained" color="primary">
+                    submit
+                </Button>
+            </Grid>
+        </FormControl>
     )
         
     
