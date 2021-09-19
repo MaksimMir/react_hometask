@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import Dialog from "./components/Dialog/Dialog";
 import Message from "./components/Message/Message";
 import MessageScreen from "./components/MessageScreen/MessageScreen";
+import Grid from '@material-ui/core/Grid';
+import Chats from "./components/Chats/Chats";
 
 
 const App = () => {
@@ -44,7 +46,14 @@ const App = () => {
       <>
         <Message changeList={changeList} />
         {isVisible && <Dialog name={messageName} closeDialogWindow={closeDialogWindow} />}
-        <MessageScreen messageList={messageList} />
+        <Grid container direction="row" justifyContent="space-between">
+          <Grid item>
+            <MessageScreen messageList={messageList} />
+          </Grid>
+          <Grid item>
+            <Chats />
+          </Grid>
+        </Grid>
       </>
     );
 }

@@ -7,9 +7,11 @@
     &__item {
         padding: 10px 20px;
         margin-bottom: 10px;
+        display: flex;
+        flex-direction: column;
     }
     &__name {
-        width: 100px;
+        align-self: flex-start;
         padding: 20px;
         text-align: center;
         border-radius: 10px;
@@ -17,6 +19,7 @@
         background-color: rgb(72, 195, 195);
     }
     &__text {
+        align-self: stretch;
         width: 100%;
         background-color: rgb(208, 255, 255);
         text-align: right;
