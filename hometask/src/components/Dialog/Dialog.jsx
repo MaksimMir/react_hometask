@@ -1,6 +1,6 @@
 import './Dialog.scss';
 
-const Dialog = ({ name, closeDialogWindow }) => {
+const Dialog = ({ closeDialogWindow }) => {
     const closeDialog = () => {
         closeDialogWindow()
     }
@@ -8,7 +8,7 @@ const Dialog = ({ name, closeDialogWindow }) => {
         <div className="dialog">
             <div className="dialog__content">
                 <p className="dialog__text">
-                    {`Сообщение от пользователя ${name} отправлено`}
+                    {`Сообщение от пользователя отправлено`}
                 </p>
                 <button onClick={closeDialog} className="dialog__btn">&#128473;</button>
             </div>

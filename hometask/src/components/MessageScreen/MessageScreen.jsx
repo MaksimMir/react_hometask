@@ -1,20 +1,28 @@
-import { List, ListItem } from '@material-ui/core';
 import './MessageScreen.scss'
+import { useParams } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 
 
-const MessageScreen = ({ messageList }) => {
+
+const MessageScreen = ( { chatMessage } ) => {
+    const [ message, setMessage ] = useState([]);
+    const { chatId } = useParams();
+    useEffect(() => {
+        const mess = chatMessage.map(item => {return item.messages})
+        setMessage(mess)
+
+    }, [chatMessage])
 
     return (
-        <List className="list">
-            {messageList.map(item => {
+        <ul className="list">
+            {message[chatId]?.map((item, id) => {
             return (
-                <ListItem className="list__item" key={item.id}>
-                    <p className="list__name">{ item.name }</p>
+                <li className="list__item" key={id}>
                     <p className="list__text">{ item.text }</p>
-                </ListItem>
+                </li>
             )
             })}
-        </List>
+        </ul>
     );
 
 
