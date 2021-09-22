@@ -1,26 +1,42 @@
-import { List, ListItem } from '@material-ui/core';
+import { useState } from "react";
+import { Switch, Route } from "react-router-dom";
+import ChatsList from "../ChatsList/ChatsList";
+import MessageScreen from "../MessageScreen/MessageScreen";
+
 
 
 const chatLists = [
-    {name: 'Bla', id: 6473},
-    {name: 'Dla', id: 63473},
-    {name: 'Vla', id: 64734443},
-    {name: 'Ula', id: 643},
-    {name: 'Ola', id: 648685},
+    {
+        name: "Chat1",
+        messages: [{ text: "FirstMessage", author: 'AUTHORS.BOT', id: 1 }],
+    },
+    {
+        name: "Chat2",
+        messages: [
+            { text: "FirstMessageHereToo!", author: 'AUTHORS.ME', id: 1 },
+            { text: "TwoMessageHereToo!", author: 'AUTHORS.ME', id: 2 }
+        ],
+    },
 ]
 
 const Chats = () => {
+    const [ chat, setChat ] = useState(chatLists);
 
     return (
-        <List>
-            {chatLists.map(el => {
-                return (
-                    <ListItem key={el.id}>
-                        {el.name}
-                    </ListItem>
-                )
-            })}
-        </List>
+        <>
+        <ul>
+            <ChatsList chat={chat} />
+        </ul>
+
+        <Switch>
+            <Route exact path="/chats">
+                <p>Select a chat please</p>
+            </Route>
+            <Route path="/chats/:chatId">
+                <MessageScreen chatMessage={chat} />
+            </Route>
+        </Switch>
+    </>
     )
 }
 
