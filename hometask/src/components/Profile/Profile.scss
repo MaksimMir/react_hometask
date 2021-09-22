@@ -1,0 +1,36 @@
+.profile {
+    width: 500px;
+    margin: 50px auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    &__item {
+        width: 100%;
+        border: none;
+        border-bottom: 2px solid rgb(45, 102, 102);
+        margin-bottom: 15px;
+        padding: 7px 10px;
+        color: rgb(45, 102, 102);
+        outline: none;
+        &:focus {
+            border-color: lighten(rgb(45, 102, 102), 30%);
+        }
+    }
+    &__submit {
+        align-self: flex-start;
+        padding: 7px 12px;
+        text-transform: uppercase;
+        background-color: rgb(45, 102, 102);
+        color: rgb(210, 255, 255);
+        font-size: 17px;
+        font-weight: 700;
+        border: 1px solid rgb(45, 102, 102);
+        outline: none;
+        &:hover {
+            background-color: lighten(rgb(45, 102, 102), 30%);
+            color: lighten(rgb(210, 255, 255), 30%);
+            border-color: lighten(rgb(45, 102, 102), 30%);
+        }
+    }
+}

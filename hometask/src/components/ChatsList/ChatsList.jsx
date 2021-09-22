@@ -2,13 +2,13 @@ import { Link } from "react-router-dom";
 
 
 const ChatsList = ({ chat }) => {
-
+    
     return(
     <>
-        {Object.keys(chat).map((id, i) => (
-            <Link key={i} to={`/chats/${id}`}>
+        {chat?.map((el, i) => (
+                <Link key={i} to={`/chats/${i}`}>
                 <p>
-                 {chat[id].name}
+                 {el.name}
                 </p>
             </Link>
         ))}

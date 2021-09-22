@@ -1,43 +1,54 @@
-import { useState } from "react";
 import { Switch, Route } from "react-router-dom";
+import { connect } from "react-redux";
+import { useState } from "react";
+import * as chatActions from './chat.action';
 import ChatsList from "../ChatsList/ChatsList";
 import MessageScreen from "../MessageScreen/MessageScreen";
 
 
+const Chats = ({ chatList, addChat }) => {
+    const [ chatName, setChatName ] = useState('');
 
-const chatLists = [
-    {
-        name: "Chat1",
-        messages: [{ text: "FirstMessage", author: 'AUTHORS.BOT', id: 1 }],
-    },
-    {
-        name: "Chat2",
-        messages: [
-            { text: "FirstMessageHereToo!", author: 'AUTHORS.ME', id: 1 },
-            { text: "TwoMessageHereToo!", author: 'AUTHORS.ME', id: 2 }
-        ],
-    },
-]
 
-const Chats = () => {
-    const [ chat, setChat ] = useState(chatLists);
+    const chatCreate = () => {
+        const newChat = {
+            name: chatName,
+            messages: []
+        }
 
+        addChat(newChat);
+    }
     return (
         <>
         <ul>
-            <ChatsList chat={chat} />
+            <ChatsList chat={chatList} />
         </ul>
 
         <Switch>
             <Route exact path="/chats">
                 <p>Select a chat please</p>
+                <div className="chat__create">
+                    <input value={chatName} onChange={evt => setChatName(evt.target.value)} type="text" className="create__name" />
+                    <button onClick={chatCreate} className="create__btn">Create</button>
+                </div>
             </Route>
             <Route path="/chats/:chatId">
-                <MessageScreen chatMessage={chat} />
+                <MessageScreen list={chatList} />
             </Route>
         </Switch>
     </>
     )
 }
 
-export default Chats;
+const mapState = state => {
+    return {
+        chatList: state.chat.chatList
+    }
+}
+
+const mapDispatch = {
+    addChat: chatActions.addChat,
+    deleteChat: chatActions.deleteChat
+}
+
+export default connect(mapState, mapDispatch)(Chats);
