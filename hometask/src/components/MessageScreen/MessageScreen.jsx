@@ -4,18 +4,18 @@ import { useState, useEffect } from 'react';
 
 
 
-const MessageScreen = ( { chatMessage } ) => {
-    const [ message, setMessage ] = useState([]);
+const MessageScreen = ( { list } ) => {
+    const [ chat, setChat ] = useState([])
     const { chatId } = useParams();
+    
     useEffect(() => {
-        const mess = chatMessage.map(item => {return item.messages})
-        setMessage(mess)
-
-    }, [chatMessage])
+        const mess = list.map(item => {return item.messages})
+        setChat(mess)
+    }, [list])
 
     return (
         <ul className="list">
-            {message[chatId]?.map((item, id) => {
+            {chat[chatId]?.map((item, id) => {
             return (
                 <li className="list__item" key={id}>
                     <p className="list__text">{ item.text }</p>

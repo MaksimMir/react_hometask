@@ -3,6 +3,7 @@ import { Switch, Route, Link, BrowserRouter } from "react-router-dom"
 import Dialog from "./components/Dialog/Dialog";
 import Message from "./components/Message/Message";
 import Chats from './components/Chats/Chats'
+import Profile from "./components/Profile/Profile";
 
 
 
@@ -58,7 +59,7 @@ const App = () => {
             </div>
           </Route>
           <Route path="/profile">
-            <h1>Profile</h1>
+            <Profile/>
           </Route>
           <Route path="/*">
             <p>Page not found</p>
