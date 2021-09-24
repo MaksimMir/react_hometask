@@ -1,15 +1,12 @@
 .form {
     width: 400px;
-    display: flex;
-    justify-content: space-between;
-    margin: 50px auto;
     &__label {
         position: relative;
         &::before {
             content: 'Message';
             position: absolute;
-            top: 10px;
-            left: -270px;
+            top: 0px;
+            left: -250px;
             font-size: 20px;
             color: rgb(114, 114, 151);
             transition: all .5s;
@@ -28,13 +25,14 @@
             border-color: darken(rgb(144, 144, 192), 30%);
         }
         &:focus + .form__label::before {
-            top: -7px;
-            left: -280px;
+            top: -12px;
+            left: -260px;
             font-size: 10px;
             color: rgb(144, 144, 192);
         }
     }
     &__btn {
+        margin-left: 10px;
         padding: 10px 17px;
         background-color: rgb(64, 124, 235);
         color: cornsilk;

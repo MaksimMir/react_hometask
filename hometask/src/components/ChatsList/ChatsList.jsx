@@ -1,18 +1,16 @@
 import { Link } from "react-router-dom";
+import './ChatList.scss';
 
 
-const ChatsList = ({ chat }) => {
-    
+const ChatsList = ({ chat }) => {    
     return(
-    <>
+    <nav className="chatlist">
         {chat?.map((el, i) => (
-                <Link key={i} to={`/chats/${i}`}>
-                <p>
+            <Link className="chatlist__item" key={i} to={`/chats/${i}`}>
                  {el.name}
-                </p>
             </Link>
         ))}
-    </>
+    </nav>
    )};
 
 export default ChatsList

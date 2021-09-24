@@ -1,8 +1,14 @@
 import { useState, useEffect, useRef } from 'react';
+import { useDispatch } from 'react-redux';
+import { useParams } from 'react-router';
+import { addMessage } from './message.action';
 import './Message.scss';
 
-const Message = ({changeList}) => {
+const Message = () => {
+    const { chatId } = useParams()
     const [ text, setText ] = useState('');
+
+    const messageDispatch = useDispatch()
 
     const handleChangeText = evt => {
         setText(evt.target.value);
@@ -10,7 +16,8 @@ const Message = ({changeList}) => {
 
     const handleChangeMessage = (evt) => {
         evt.preventDefault();  
-        changeList(text);
+        const message = { text };
+        messageDispatch(addMessage(chatId, message));
         setText('');
     }
 

@@ -1,0 +1,12 @@
+.chatpage {
+    display: flex;
+    flex-direction: column;
+    &__nav {
+        background-color: cornsilk;
+    }
+    &__messages {
+        padding: 30px;
+        display: flex;
+        justify-content: space-between;
+    }
+}

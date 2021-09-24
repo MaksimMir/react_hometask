@@ -1,14 +1,21 @@
 import { Switch, Route } from "react-router-dom";
-import { connect } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useState } from "react";
 import * as chatActions from './chat.action';
 import ChatsList from "../ChatsList/ChatsList";
+import Message from "../Message/Message";
 import MessageScreen from "../MessageScreen/MessageScreen";
+import './Chats.scss'
 
 
-const Chats = ({ chatList, addChat }) => {
+const Chats = () => {
     const [ chatName, setChatName ] = useState('');
 
+
+    const chatList = useSelector(state => state.chat.chatList);
+    const chatDispatch = useDispatch();
+
+    const message = useSelector(state => state.message.messageList);
 
     const chatCreate = () => {
         const newChat = {
@@ -16,39 +23,31 @@ const Chats = ({ chatList, addChat }) => {
             messages: []
         }
 
-        addChat(newChat);
+        chatDispatch(chatActions.addChat(newChat));
     }
     return (
-        <>
-        <ul>
-            <ChatsList chat={chatList} />
-        </ul>
+        <div className="chatpage">
+            <div className="chatpage__nav">
+                <ChatsList chat={chatList} />
+            </div>
 
-        <Switch>
-            <Route exact path="/chats">
-                <p>Select a chat please</p>
-                <div className="chat__create">
-                    <input value={chatName} onChange={evt => setChatName(evt.target.value)} type="text" className="create__name" />
-                    <button onClick={chatCreate} className="create__btn">Create</button>
-                </div>
-            </Route>
-            <Route path="/chats/:chatId">
-                <MessageScreen list={chatList} />
-            </Route>
-        </Switch>
-    </>
+            <Switch>
+                <Route exact path="/chats">
+                    <p>Select a chat please</p>
+                    <div className="chat">
+                        <input value={chatName} onChange={evt => setChatName(evt.target.value)} type="text" className="chat__name" />
+                        <button onClick={chatCreate} className="chat__btn">Create</button>
+                    </div>
+                </Route>
+                <Route path="/chats/:chatId">
+                    <div className="chatpage__messages">
+                        <Message />
+                        <MessageScreen message={message} />
+                    </div>
+                </Route>
+            </Switch>
+        </div>
     )
 }
 
-const mapState = state => {
-    return {
-        chatList: state.chat.chatList
-    }
-}
-
-const mapDispatch = {
-    addChat: chatActions.addChat,
-    deleteChat: chatActions.deleteChat
-}
-
-export default connect(mapState, mapDispatch)(Chats);
+export default Chats;
