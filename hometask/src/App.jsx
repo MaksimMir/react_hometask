@@ -1,31 +1,10 @@
 import { Switch, Route, Link, BrowserRouter } from "react-router-dom"
-// import Dialog from "./components/Dialog/Dialog";
 import Chats from './components/Chats/Chats'
 import Profile from "./components/Profile/Profile";
 
 
 
 const App = () => {
-    // const [ isVisible, setIsVisible] = useState(false);
-
-
-    // const closeDialogWindow = () => {
-    //   setIsVisible(false)
-    // }
-
-    // useEffect(() => {
-
-    //   if (!messageList.length) return;
-
-    //   setTimeout(() => {
-    //     setIsVisible(true)
-    //   }, 1500)
-
-    //   return () => {
-    //     setIsVisible(false)        
-    //   }
-    // }, [messageList])
-
     return (
       <>
       <BrowserRouter>
@@ -39,7 +18,6 @@ const App = () => {
             <h1>Home</h1>
           </Route>
           <Route path="/chats">
-            {/* {isVisible && <Dialog closeDialogWindow={closeDialogWindow} />} */}
             <Chats />
           </Route>
           <Route path="/profile">
