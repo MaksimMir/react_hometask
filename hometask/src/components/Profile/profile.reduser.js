@@ -4,7 +4,7 @@ const initialState = {
     profileList: []
 }
 
-const profileReduser = (state = initialState, action) => {
+const profileReducer = (state = initialState, action) => {
     switch (action.type) {
         case ADD_PROFILE:
             return {
@@ -25,4 +25,4 @@ const profileReduser = (state = initialState, action) => {
     }
 }
 
-export default profileReduser;
+export default profileReducer;

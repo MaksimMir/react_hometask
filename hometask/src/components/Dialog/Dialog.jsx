@@ -8,7 +8,7 @@ const Dialog = ({ closeDialogWindow }) => {
         <div className="dialog">
             <div className="dialog__content">
                 <p className="dialog__text">
-                    {`Сообщение от пользователя отправлено`}
+                    {`Сообщение отправлено`}
                 </p>
                 <button onClick={closeDialog} className="dialog__btn">&#128473;</button>
             </div>

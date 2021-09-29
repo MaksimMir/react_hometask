@@ -1,21 +1,16 @@
 .list {
-    height: 100vh;
+    width: 400px;
     background-color: rgb(254, 255, 254);
     list-style: none;
     margin: 0;
     padding: 0;
+    display: flex;
+    flex-direction: column;
     &__item {
-        padding: 10px 20px;
-        margin-bottom: 10px;
-        display: flex;
-        flex-direction: column;
-    }
-    &__text {
-        align-self: stretch;
-        width: 100%;
+        padding: 7px 12px;
+        margin-bottom: 5px;
         background-color: rgb(208, 255, 255);
         text-align: right;
-        padding: 20px;
         border-radius: 10px;
         color: rgb(45, 102, 102);
     }

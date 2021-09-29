@@ -1,0 +1,9 @@
+.chatlist {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 20px;
+    &__item {
+        text-decoration: none;
+        padding: 0 5px;
+    }
+}

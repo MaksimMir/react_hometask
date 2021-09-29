@@ -16,7 +16,7 @@ const initialState = {
     ]
 }
 
-const chatReduser = (state = initialState, action) => {
+const chatReducer = (state = initialState, action) => {
     switch (action.type) {
         case ADD_CHAT:
             return {
@@ -37,4 +37,4 @@ const chatReduser = (state = initialState, action) => {
     }
 }
 
-export default chatReduser;
+export default chatReducer;
