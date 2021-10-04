@@ -1,21 +1,17 @@
 import { useState, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router';
-import { addMessage } from './message.action';
+import { addMessage, showWindow, closeDialogWindow } from './message.action';
 import Dialog from "../Dialog/Dialog";
-import { setVisible, inVisible } from "../Dialog/dialog.action";
 import './Message.scss';
+
+const dialogMessage = 'Сообщение отправлено';
 
 const Message = () => {
     const { chatId } = useParams()
     const [ text, setText ] = useState('');
-    const [ isVisible, setIsVisible] = useState(false);
+    let isVisible = useSelector(state => state.message.isShow)
     const messageDispatch = useDispatch();
-    const dialog = useSelector(state => state.dialog);
-
-    const closeDialogWindow = () => {
-        messageDispatch(inVisible(false));
-    }
 
     const handleChangeText = evt => {
         setText(evt.target.value);
@@ -23,8 +19,8 @@ const Message = () => {
 
     const handleChangeMessage = (evt) => {
         evt.preventDefault();  
-        messageDispatch(addMessage(chatId, { text }));   
-        messageDispatch(setVisible(true));
+        messageDispatch(addMessage(chatId, { text })); 
+        messageDispatch(showWindow(true));  
         setText('');
     }
 
@@ -32,16 +28,12 @@ const Message = () => {
 
     useEffect(() => {
         ref?.current.focus();
-        setIsVisible(dialog);
-
-        return () => {
-            setIsVisible(false);
-        }
-    }, [dialog])
+        messageDispatch(closeDialogWindow())
+    }, [isVisible])
 
     return (
         <>
-            {isVisible && <Dialog closeDialogWindow={closeDialogWindow} />}
+            {isVisible && <Dialog text={dialogMessage} />}
             <form className="form">
                 <input
                 ref={ref}

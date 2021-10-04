@@ -1,6 +1,7 @@
-import { ADD_MESSAGE } from './message.action';
+import { ADD_MESSAGE, SHOW_DIALOG } from './message.action';
 
 const initialState = {
+    isShow: false,
     messageList: {}
 }
 
@@ -22,7 +23,11 @@ const messageReducer = (state = initialState, action) => {
 
                 }
             }
-    
+        case SHOW_DIALOG:
+            return {
+                ...state,
+                isShow: action.payload
+            }
         default:
             return state;
     }
