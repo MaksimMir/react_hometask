@@ -1,6 +1,7 @@
 import { Switch, Route, Link, BrowserRouter } from "react-router-dom"
 import Chats from './components/Chats/Chats'
 import Profile from "./components/Profile/Profile";
+import TodoList from "./components/TodoList/TodoList";
 
 
 
@@ -16,6 +17,7 @@ const App = () => {
         <Switch>
           <Route exact path="/">
             <h1>Home</h1>
+            <TodoList />
           </Route>
           <Route path="/chats">
             <Chats />

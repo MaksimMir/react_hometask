@@ -1,22 +1,17 @@
 import './Dialog.scss';
 
-const Dialog = ({ closeDialogWindow }) => {
-    const closeDialog = () => {
-        closeDialogWindow()
-    }
+const Dialog = ({ text }) => {
+
     return (
         <div className="dialog">
             <div className="dialog__content">
                 <p className="dialog__text">
-                    {`Сообщение отправлено`}
+                    {text}
                 </p>
-                <button onClick={closeDialog} className="dialog__btn">&#128473;</button>
             </div>
 
         </div>
     );
-
-
 }
 
 export default Dialog;

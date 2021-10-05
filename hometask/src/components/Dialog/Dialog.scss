@@ -6,6 +6,7 @@
     height: 100vh;
     z-index: 100;
     background-color: rgba(0, 0, 0, .5);
+    transition: all .5s;
     &__content {
         position: relative;
         padding: 10px 30px;
