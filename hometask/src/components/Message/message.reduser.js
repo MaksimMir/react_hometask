@@ -1,32 +1,26 @@
-import { ADD_MESSAGE, SHOW_DIALOG } from './message.action';
+import { ADD_MESSAGE, GET_MESSAGE, SHOW_DIALOG } from './message.action';
 
 const initialState = {
     isShow: false,
-    messageList: {}
+    messageList: []
 }
 
-const messageReducer = (state = initialState, action) => {
-    switch (action.type) {
+const messageReducer = (state = initialState, { type, payload }) => {
+    switch (type) {
+        case GET_MESSAGE:
+            return {
+                ...state,
+                messageList: [...payload]
+            }
         case ADD_MESSAGE:
-            const currentList = state.messageList[action.payload.chatId] || [];
             return {               
                 ...state,
-                messageList: {
-                    ...state.messageList,
-                    [action.payload.chatId]: [
-                        ...currentList,
-                        {
-                            ...action.payload.message,
-                            id: `${currentList.length}`
-                        }
-                    ]
-
-                }
+                messageList: [ ...state, payload]
             }
         case SHOW_DIALOG:
             return {
                 ...state,
-                isShow: action.payload
+                isShow: payload
             }
         default:
             return state;

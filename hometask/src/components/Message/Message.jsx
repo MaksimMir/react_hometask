@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router';
-import { addMessage, showWindow, closeDialogWindow } from './message.action';
+import { getMessageFromDB, showWindow, closeDialogWindow, createMessage } from './message.action';
 import Dialog from "../Dialog/Dialog";
 import './Message.scss';
 
@@ -18,8 +18,16 @@ const Message = () => {
     }    
 
     const handleChangeMessage = (evt) => {
-        evt.preventDefault();  
-        messageDispatch(addMessage(chatId, { text })); 
+        evt.preventDefault(); 
+        const newMessage = {
+            id: null,
+            chats_id: chatId,
+            text,
+            author: 'Author_My'
+        } 
+         
+        messageDispatch(createMessage(newMessage));
+        
         messageDispatch(showWindow(true));  
         setText('');
     }
@@ -28,8 +36,12 @@ const Message = () => {
 
     useEffect(() => {
         ref?.current.focus();
+        messageDispatch(getMessageFromDB(chatId));
+    }, []);
+
+    useEffect(() => {
         messageDispatch(closeDialogWindow())
-    }, [isVisible])
+    }, [isVisible, messageDispatch]);
 
     return (
         <>

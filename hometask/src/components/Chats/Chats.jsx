@@ -1,34 +1,44 @@
 import { Switch, Route } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { useState } from "react";
-import * as chatActions from './chat.action';
+import { getChatList, addChat, deleteChat } from './chat.action';
 import ChatsList from "../ChatsList/ChatsList";
 import Message from "../Message/Message";
 import MessageScreen from "../MessageScreen/MessageScreen";
 import './Chats.scss'
+import { useEffect } from "react";
 
 
 const Chats = () => {
     const [ chatName, setChatName ] = useState('');
-
-
-    const chatList = useSelector(state => state.chat.chatList);
+    localStorage.clear();
+    const chatList = useSelector(state => state.chat);
     const chatDispatch = useDispatch();
-
+    
     const message = useSelector(state => state.message.messageList);
 
-    const chatCreate = () => {
+    const chatCreate = (evt) => {
+        evt.preventDefault();
         const newChat = {
-            name: chatName,
-            messages: []
+            id: null,
+            name: chatName
         }
+        chatDispatch(addChat(newChat));
+        setChatName('');
+    };
 
-        chatDispatch(chatActions.addChat(newChat));
-    }
+    const closeChat = id => {
+        chatDispatch(deleteChat(id))
+    };
+
+    useEffect(() => {
+        chatDispatch(getChatList())
+    }, []);
+
     return (
         <div className="chatpage">
             <div className="chatpage__nav">
-                <ChatsList chat={chatList} />
+                <ChatsList closeChat={closeChat} chat={chatList} />
             </div>
 
             <Switch>

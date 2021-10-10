@@ -1,32 +1,42 @@
-import { Switch, Route, Link, BrowserRouter } from "react-router-dom"
+import { useSelector } from "react-redux";
+import { Switch, Route, Link, BrowserRouter, useHistory } from "react-router-dom"
 import Chats from './components/Chats/Chats'
+import AuthPage from "./components/AuthPage/AuthPage";
 import Profile from "./components/Profile/Profile";
 import TodoList from "./components/TodoList/TodoList";
 
-
-
 const App = () => {
+  const { err } = useSelector(state => state.auth);
+  const history = useHistory();
     return (
       <>
-      <BrowserRouter>
+      <BrowserRouter history={history}>
         <ul className="nav">
             <li className="nav__item"><Link to="/">Home</Link></li>
+            <li className="nav__item"><Link to="/auth">AuthPage</Link></li>
             <li className="nav__item"><Link to="/chats">Chats</Link></li>
             <li className="nav__item"><Link to="/profile">Profile</Link></li>
         </ul>
         <Switch>
-          <Route exact path="/">
-            <h1>Home</h1>
-            <TodoList />
+          {!err && 
+            <Route exact path="/">
+              <h1>Home</h1>
+              <TodoList />
+            </Route>
+          }
+          <Route path="/auth">
+            <AuthPage />
           </Route>
-          <Route path="/chats">
-            <Chats />
-          </Route>
-          <Route path="/profile">
-            <Profile/>
-          </Route>
+          {!err &&            
+            <Route path="/chats">
+              <Chats />
+            </Route>
+          }
+          {!err && 
+            <Route path="/profile" component={Profile} />
+          }          
           <Route path="/*">
-            <p>Page not found</p>
+            <p>Необходимо зарегестрироваться, или войти под своим логином</p>
           </Route>
         </Switch>
       </BrowserRouter>
