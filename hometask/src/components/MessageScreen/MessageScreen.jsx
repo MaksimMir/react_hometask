@@ -1,12 +1,13 @@
-import { useParams } from 'react-router';
-import './MessageScreen.scss'
+import './MessageScreen.scss';
+import { useSelector } from 'react-redux';
 
-const MessageScreen = ( { message } ) => {
-    const { chatId } = useParams();
+const MessageScreen = () => {
+
+    const message = useSelector(state => state.message.messageList);
 
     return (
         <ul className="list">
-            {message[chatId]?.map(item => {
+            {message?.map(item => {
             return (
                 <li className="list__item" key={item.id}>
                     { item.text }

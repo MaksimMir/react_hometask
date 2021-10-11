@@ -3,6 +3,7 @@ import profileReducer from './components/Profile/profile.reduser';
 import chatReducer from './components/Chats/chat.reduser';
 import messageReducer from './components/Message/message.reduser';
 import todoReduser from './components/TodoList/todolist,reduser';
+import authReduser from './components/AuthPage/auth.reduser';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import thunk from 'redux-thunk';
 import { persistStore, persistReducer } from 'redux-persist';
@@ -12,7 +13,8 @@ const reducer = combineReducers({
     profile: profileReducer,
     chat: chatReducer,
     message: messageReducer,
-    todo: todoReduser
+    todo: todoReduser,
+    auth: authReduser
 });
 
 const persistConfig = {

@@ -4,6 +4,19 @@
     padding: 20px;
     &__item {
         text-decoration: none;
-        padding: 0 5px;
+        padding: 2px 0 2px 5px;
+        margin: 5px 7px;
+    }
+    &__closebtn {
+        margin-left: 5px;
+        border: none;
+        outline: none;
+        font-size: 17px;
+        color: red;
+        background-color: inherit;
+        &:hover{
+            background-color: red;
+            color: white;
+        }
     }
 }
