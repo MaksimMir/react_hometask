@@ -47,6 +47,7 @@ app.get('/message', (req, res) => {
             }
         )
     }).then(data => {
+        console.log(data)
         res.send(data);
     })
 })

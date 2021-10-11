@@ -1,6 +1,9 @@
-import './MessageScreen.scss'
+import './MessageScreen.scss';
+import { useSelector } from 'react-redux';
 
-const MessageScreen = ( { message } ) => {
+const MessageScreen = () => {
+
+    const message = useSelector(state => state.message.messageList);
 
     return (
         <ul className="list">

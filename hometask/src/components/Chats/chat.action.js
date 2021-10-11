@@ -1,18 +1,10 @@
 export const GET_CHAT = 'DELETE_CHAT';
-export const ADD_CHAT = 'ADD_CHAT';
 const baseUrl = 'http://localhost:3001';
 
 export const getChat = chatList => {
     return {
         type: GET_CHAT,
         payload: chatList
-    }
-}
-
-export const addNewChat = newChat => {
-    return {
-        type: ADD_CHAT,
-        payload: newChat
     }
 }
 
@@ -43,11 +35,12 @@ export const addChat = chat => dispatch => {
     })
     .then(response => {
         if (response.ok) {
-            return response.json();
+            dispatch(getChatList());
         } else {
             throw new Error('not found')
         }
     })
+    .catch(err => console.log(err));
 }
 
 export const deleteChat = chatId => dispatch => {

@@ -40,7 +40,7 @@ export const closeDialogWindow = () => dispatch => {
     }, 1000)
 }
 
-export const createMessage = newMessage => dispatch => {
+export const createMessage = (newMessage, id) => dispatch => {
     fetch(`${baseUrl}/message`, {
         method: 'POST',
         headers: {
@@ -49,7 +49,7 @@ export const createMessage = newMessage => dispatch => {
         body: JSON.stringify(newMessage)
     }).then(response => {
         if (response.ok) {
-            return response.json()
+            dispatch(getMessageFromDB(id))
         } else {
             throw new Error('not found')
         }

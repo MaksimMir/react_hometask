@@ -26,7 +26,7 @@ const Message = () => {
             author: 'Author_My'
         } 
          
-        messageDispatch(createMessage(newMessage));
+        messageDispatch(createMessage(newMessage, chatId));
         
         messageDispatch(showWindow(true));  
         setText('');
@@ -37,11 +37,11 @@ const Message = () => {
     useEffect(() => {
         ref?.current.focus();
         messageDispatch(getMessageFromDB(chatId));
-    }, []);
+    });
 
     useEffect(() => {
         messageDispatch(closeDialogWindow())
-    }, [isVisible, messageDispatch]);
+    }, [isVisible]);
 
     return (
         <>

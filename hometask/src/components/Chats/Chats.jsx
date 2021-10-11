@@ -1,21 +1,16 @@
 import { Switch, Route } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
-import { useState } from "react";
-import { getChatList, addChat, deleteChat } from './chat.action';
+import { useDispatch } from "react-redux";
+import { useState, useEffect } from "react";
+import { getChatList, addChat } from './chat.action';
 import ChatsList from "../ChatsList/ChatsList";
 import Message from "../Message/Message";
 import MessageScreen from "../MessageScreen/MessageScreen";
 import './Chats.scss'
-import { useEffect } from "react";
 
 
 const Chats = () => {
-    const [ chatName, setChatName ] = useState('');
-    localStorage.clear();
-    const chatList = useSelector(state => state.chat);
+    const [ chatName, setChatName ] = useState('');    
     const chatDispatch = useDispatch();
-    
-    const message = useSelector(state => state.message.messageList);
 
     const chatCreate = (evt) => {
         evt.preventDefault();
@@ -27,10 +22,6 @@ const Chats = () => {
         setChatName('');
     };
 
-    const closeChat = id => {
-        chatDispatch(deleteChat(id))
-    };
-
     useEffect(() => {
         chatDispatch(getChatList())
     }, []);
@@ -38,7 +29,7 @@ const Chats = () => {
     return (
         <div className="chatpage">
             <div className="chatpage__nav">
-                <ChatsList closeChat={closeChat} chat={chatList} />
+                <ChatsList />
             </div>
 
             <Switch>
@@ -52,7 +43,7 @@ const Chats = () => {
                 <Route path="/chats/:chatId">
                     <div className="chatpage__messages">
                         <Message />
-                        <MessageScreen message={message} />
+                        <MessageScreen />
                     </div>
                 </Route>
             </Switch>
